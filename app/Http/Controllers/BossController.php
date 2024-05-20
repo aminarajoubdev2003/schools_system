@@ -25,7 +25,7 @@ class BossController extends Controller
             }
             catch (\Throwable $th) {
        
-            return $this->apiResponse(null,false,$th->getMessage(),500);
+            return $this->apiResponse(null,false,$th->getMessage(),201);
             }
     }
 
@@ -58,9 +58,9 @@ class BossController extends Controller
             $image= $this->uploadImagePublic2($request,'boss','image');
                 
             if($image)
-            {echo $image;
+            {
 
-            /*$uuid= str::uuid();
+            $uuid= str::uuid();
             $boss= Boss::firstOrCreate([
             "uuid"=>$uuid,
             "name"=>$request->name,
@@ -69,16 +69,16 @@ class BossController extends Controller
             ]);
 
             $boss= BossResource::make($boss);
-            return $this->apiResponse($boss);*/
+            return $this->apiResponse($boss);
             }
             else
-            {echo "ad";
-                //return $this->apiResponse(null,false,['Failed to upload image'],500);
+            {
+                return $this->apiResponse(null,false,['Failed to upload image'],201);
             }
             }
         catch(\Throwable $th)
         {
-            return $this->apiResponse(null , false , $th->getMessage(),500);
+            return $this->apiResponse(null , false , $th->getMessage(),201);
         }
             
     }
